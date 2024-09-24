@@ -1,6 +1,6 @@
 import React from 'react';
-import EnergyManagement from './EnergyManagement';
-import Chatbot from './Chatbot';
+import EnergyManagement from './Components/EnergyManagement';
+import Chatbot from './Components/Chatbot';
 
 const App = () => {
   return (

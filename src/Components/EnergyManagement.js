@@ -9,12 +9,12 @@ const EnergyManagement = () => {
   const checkUsage = async () => {
     try {
       const response = await axios.post('https://api.africastalking.com/version1/messaging', {
-        username: 'your_username',
+        username: 'niceone', // Replace with your Africa's Talking username
         to: phoneNumber,
         message: 'Check Usage'
       }, {
         headers: {
-          'apiKey': 'your_api_key'
+          'apiKey': 'atsk_0d6485c5f33a29e34c98bf4f077b59e9251a8b250ff3b6e39232c4b04d4b579271ae84bb' // Replace with your Africa's Talking API key
         }
       });
       setUsage(response.data.SMSMessageData.Message);
@@ -26,14 +26,14 @@ const EnergyManagement = () => {
   const purchaseCredits = async () => {
     try {
       const response = await axios.post('https://api.africastalking.com/version1/airtime/send', {
-        username: 'your_username',
+        username: 'niceone', // Replace with your Africa's Talking username
         recipients: [{
           phoneNumber: phoneNumber,
           amount: 'KES 10'
         }]
       }, {
         headers: {
-          'apiKey': 'your_api_key'
+          'apiKey': 'atsk_0d6485c5f33a29e34c98bf4f077b59e9251a8b250ff3b6e39232c4b04d4b579271ae84bb' // Replace with your Africa's Talking API key
         }
       });
       setCredits(response.data.responses[0].status);
