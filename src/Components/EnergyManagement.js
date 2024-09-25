@@ -1,59 +1,59 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../App.css'; // Add this for custom styling
 
 const EnergyManagement = () => {
   const [usage, setUsage] = useState('');
   const [credits, setCredits] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  // Replace this URL with your ngrok URL or deployed backend URL
+  const API_URL = 'https://your-ngrok-url'; // Update this with your actual ngrok URL
 
   const checkUsage = async () => {
+    setLoading(true);
     try {
-      const response = await axios.post('https://api.africastalking.com/version1/messaging', {
-        username: 'niceone', // Replace with your Africa's Talking username
-        to: phoneNumber,
-        message: 'Check Usage'
-      }, {
-        headers: {
-          'apiKey': 'atsk_0d6485c5f33a29e34c98bf4f077b59e9251a8b250ff3b6e39232c4b04d4b579271ae84bb' // Replace with your Africa's Talking API key
-        }
-      });
-      setUsage(response.data.SMSMessageData.Message);
+      const response = await axios.post(`${API_URL}/check-usage`, { phoneNumber }); // Using the check usage endpoint
+      setUsage(response.data.message); // Set the returned message from the API
     } catch (error) {
       console.error('Error checking usage', error);
+      setUsage('Error retrieving usage'); // Display error message
+    } finally {
+      setLoading(false);
     }
   };
 
   const purchaseCredits = async () => {
+    setLoading(true);
     try {
-      const response = await axios.post('https://api.africastalking.com/version1/airtime/send', {
-        username: 'niceone', // Replace with your Africa's Talking username
-        recipients: [{
-          phoneNumber: phoneNumber,
-          amount: 'KES 10'
-        }]
-      }, {
-        headers: {
-          'apiKey': 'atsk_0d6485c5f33a29e34c98bf4f077b59e9251a8b250ff3b6e39232c4b04d4b579271ae84bb' // Replace with your Africa's Talking API key
-        }
-      });
-      setCredits(response.data.responses[0].status);
+      const response = await axios.post(`${API_URL}/purchase-credits`, { phoneNumber }); // Using the purchase credits endpoint
+      setCredits(response.data.status); // Set the status of the purchase
     } catch (error) {
       console.error('Error purchasing credits', error);
+      setCredits('Error purchasing credits'); // Display error message
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Energy Management</h1>
       <input
         type="text"
         placeholder="Enter your phone number"
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
+        className="input"
       />
-      <button onClick={checkUsage}>Check Usage</button>
+      <button onClick={checkUsage} className="button" disabled={loading}>
+        {loading ? 'Loading...' : 'Check Usage'}
+      </button>
       <p>Current Usage: {usage}</p>
-      <button onClick={purchaseCredits}>Purchase Credits</button>
+      <button onClick={purchaseCredits} className="button" disabled={loading}>
+        {loading ? 'Loading...' : 'Purchase Credits'}
+      </button>
       <p>Credits Purchased: {credits}</p>
     </div>
   );
