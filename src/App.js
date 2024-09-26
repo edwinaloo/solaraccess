@@ -1,15 +1,13 @@
+// src/App.js
 import React from 'react';
-import EnergyManagement from './Components/EnergyManagement';
-import Chatbot from './Components/Chatbot';
-import './App.css';
+import LoginPage from './LoginPage';
 
-const App = () => {
+function App() {
   return (
-    <div className="app-container">
-      <EnergyManagement />
-      <Chatbot />
+    <div className="App">
+      <LoginPage />
     </div>
   );
-};
+}
 
 export default App;
