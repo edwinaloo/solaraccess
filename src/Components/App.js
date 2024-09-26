@@ -9,6 +9,11 @@ function App() {
   const [response, setResponse] = useState(null);
 
   const handleSendSms = async () => {
+    if (!phoneNumber || !message) {
+      setResponse({ error: 'Phone number and message are required.' });
+      return;
+    }
+
     try {
       const result = await sendSms(phoneNumber, message);
       setResponse(result);
