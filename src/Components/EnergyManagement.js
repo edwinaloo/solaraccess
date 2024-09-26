@@ -8,7 +8,7 @@ const EnergyManagement = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const API_URL = 'https://your-ngrok-url'; // Update this with your actual ngrok URL
+  const API_URL = 'http://127.0.0.1:5000'; // Update this with your actual ngrok URL
 
   const checkUsage = async () => {
     setLoading(true);
