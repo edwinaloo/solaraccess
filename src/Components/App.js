@@ -1,6 +1,6 @@
-// src/App.js
+// src/Components/App.js
 import React, { useState } from 'react';
-import { sendSms } from './services/africasTalkingService';
+import { sendSms } from './africasTalkingService';
 import LoginPage from './LoginPage';
 
 function App() {
