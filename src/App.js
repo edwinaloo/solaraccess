@@ -1,7 +1,7 @@
 import React from 'react';
 import EnergyManagement from './Components/EnergyManagement';
 import Chatbot from './Components/Chatbot';
-import './App.css'; // Add this for custom styling
+import './App.css';
 
 const App = () => {
   return (

@@ -6,8 +6,8 @@ const app = express();
 app.use(bodyParser.json());
 
 // Insert your Africa's Talking credentials here
-const AFRICASTALKING_USERNAME = 'your_username'; // Replace with your Africa's Talking username
-const AFRICASTALKING_API_KEY = 'your_api_key'; // Replace with your Africa's Talking API key
+const AFRICASTALKING_USERNAME = 'niceone'; // Replace with your Africa's Talking username
+const AFRICASTALKING_API_KEY = 'atsk_2a2dcc57e3989fa972f762ca0de97856609ccee6cfa3459f05971264b95005bcae746a1a'; // Replace with your Africa's Talking API key
 
 // Endpoint to check usage via SMS
 app.post('/check-usage', async (req, res) => {
